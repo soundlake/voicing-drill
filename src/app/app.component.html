@@ -3,6 +3,9 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
+  <ul>
+    <li *ngFor="let name of chordNames">{{ name }}</li>
+  </ul>
 
   <router-outlet></router-outlet>
 </div>
