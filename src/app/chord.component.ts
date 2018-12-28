@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   `
 })
 export class ChordComponent {
-    private chord$ = this.route.params.pipe(
+    public chord$ = this.route.params.pipe(
       map(params => params.chord)
     );
 

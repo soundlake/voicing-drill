@@ -9,9 +9,8 @@ import { Chord, Note } from 'tonal';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnDestroy, OnInit {
-  private readonly title = 'voicing-drill';
-  private button_label: 'start' | 'stop';
-  private repeat_interval: number;
+  public button_label: 'start' | 'stop';
+  public repeat_interval: number;
   private repeat_subscription: Subscription;
 
   constructor(private readonly router: Router) {}
