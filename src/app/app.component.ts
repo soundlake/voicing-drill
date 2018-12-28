@@ -10,15 +10,18 @@ import { Chord, Note } from 'tonal';
 })
 export class AppComponent implements OnDestroy, OnInit {
   private readonly title = 'voicing-drill';
+  private button_label: 'start' | 'stop';
+  private repeat_interval: number;
   private repeat_subscription: Subscription;
 
   constructor(private readonly router: Router) {}
 
   public ngOnInit() {
-    this.start();
+    this.button_label = 'start';
+    this.repeat_interval = 5;
   }
 
-  private start(new_interval=3) {
+  private start(new_interval: number) {
     this.stop();
     if (new_interval < 1) {
       new_interval = 1;
@@ -49,5 +52,22 @@ export class AppComponent implements OnDestroy, OnInit {
     const chordNames = Chord.names();
     const random_index = Math.floor(Math.random() * chordNames.length);
     return chordNames[random_index];
+  }
+
+  public onRepeatIntervalChanged(new_interval: number) {
+    this.repeat_interval = new_interval;
+    if (this.button_label === 'stop') {
+      this.start(this.repeat_interval);
+    }
+  }
+
+  public onButtonClicked() {
+    if (this.button_label === 'start') {
+      this.start(this.repeat_interval);
+      this.button_label = 'stop';
+    } else {
+      this.stop();
+      this.button_label = 'start';
+    }
   }
 }

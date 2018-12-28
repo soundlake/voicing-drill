@@ -8,7 +8,8 @@
   <div class="form-group">
     <label for="interval">Interval (in seconds)</label>
     <input id="interval" class="form-control"
-        type="number" min="1" value="3"
-        (change)="start($event)">
+        type="number" min="1" [value]="repeat_interval"
+        (change)="onRepeatIntervalChanged($event.target.value)">
   </div>
+  <button type="button" class="btn btn-primary" (click)="onButtonClicked()">{{ button_label }}</button>
 </div>
