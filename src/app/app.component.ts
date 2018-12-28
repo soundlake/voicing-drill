@@ -10,18 +10,33 @@ import { Chord, Note } from 'tonal';
 })
 export class AppComponent implements OnDestroy, OnInit {
   private readonly title = 'voicing-drill';
-  private timerSubscription: Subscription;
+  private repeat_subscription: Subscription;
 
   constructor(private readonly router: Router) {}
 
   public ngOnInit() {
-    this.timerSubscription = interval(5000).subscribe(() => {
+    this.start();
+  }
+
+  private start(new_interval=3) {
+    this.stop();
+    if (new_interval < 1) {
+      new_interval = 1;
+    }
+    console.log(`Now it will repeat in ${new_interval} second(s).`);
+    this.repeat_subscription = interval(new_interval * 1000).subscribe(() => {
       this.router.navigate([`chord/${this.pickRandomKey()}${this.pickRandomChord()}`]);
     });
   }
 
+  private stop() {
+    if (this.repeat_subscription && !this.repeat_subscription.closed) {
+      this.repeat_subscription.unsubscribe();
+    }
+  }
+
   public ngOnDestroy() {
-    this.timerSubscription.unsubscribe();
+    this.stop();
   }
 
   private pickRandomKey(): string {

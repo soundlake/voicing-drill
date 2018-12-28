@@ -4,4 +4,11 @@
   </h1>
 
   <router-outlet></router-outlet>
+
+  <div class="form-group">
+    <label for="interval">Interval (in seconds)</label>
+    <input id="interval" class="form-control"
+        type="number" min="1" value="3"
+        (change)="start($event)">
+  </div>
 </div>
