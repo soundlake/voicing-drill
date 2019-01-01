@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
-import { Chord, Note } from 'tonal';
+import { Note } from 'tonal';
 
 @Component({
   selector: 'app-root',
@@ -42,13 +42,19 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   private pickRandomKey(): string {
-    const noteNames = Note.names()
+    const noteNames = Note.names();
     const random_index = Math.floor(Math.random() * noteNames.length);
     return noteNames[random_index];
   }
 
   private pickRandomChord(): string {
-    const chordNames = Chord.names();
+    const chordNames = [
+      'M7', 'M9', 'M7(#11)',
+      'm7', 'm9', 'm7(11)',
+      'dim7', 'aug7',
+      '7', '7sus4', '7(b9)', '7(b13)', '7(b9,b13)', '7(#11)', '7(b9,#11)',
+      'alt',
+    ];
     const random_index = Math.floor(Math.random() * chordNames.length);
     return chordNames[random_index];
   }
