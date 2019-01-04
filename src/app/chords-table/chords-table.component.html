@@ -1,0 +1,21 @@
+<button type="button" class="btn btn-info" (click)="show = !show">{{ show ? 'Close' : 'Open' }} the Chord Table</button>
+<table class="table" *ngIf="show">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th *ngFor="let c of chords">
+        <button type="button" class="btn btn-secondary">{{ c }}</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let k of notes">
+      <th><button type="button" class="btn btn-secondary">{{ k }}</button></th>
+      <td *ngFor="let c of chords">
+        <button type="button" class="btn btn-secondary">
+          <strong>{{ k }}</strong>{{ c }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

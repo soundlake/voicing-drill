@@ -5,11 +5,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChordComponent } from './chord.component';
+import { ChordsTableComponent } from './chords-table/chords-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChordComponent
+    ChordComponent,
+    ChordsTableComponent
   ],
   imports: [
     BrowserModule,
