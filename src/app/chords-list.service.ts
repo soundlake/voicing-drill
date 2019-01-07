@@ -52,6 +52,10 @@ export class ChordsListService {
     ];
   }
 
+  get actives(): string[] {
+    return Object.keys(this.all).filter(k => this.all[k]);
+  }
+
   private key(note: Note, chord: Chord) {
     return note.concat(chord);
   }

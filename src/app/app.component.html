@@ -12,5 +12,7 @@
         type="number" min="1" [value]="repeat_interval"
         (change)="onRepeatIntervalChanged($event.target.value)">
   </div>
-  <button type="button" class="btn btn-primary" (click)="onButtonClicked()">{{ button_label }}</button>
+  <button type="button" class="btn btn-primary"
+    [disabled]="chordsList.actives.length < 1"
+    (click)="onButtonClicked()">{{ is_playing ? 'stop' : 'start'}}</button>
 </div>
