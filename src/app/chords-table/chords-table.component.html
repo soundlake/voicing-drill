@@ -2,19 +2,30 @@
 <table class="table" *ngIf="show">
   <thead>
     <tr>
-      <th>&nbsp;</th>
-      <th *ngFor="let c of chords">
-        <button type="button" class="btn btn-secondary">{{ c }}</button>
+      <th>
+        <button type="button"
+          class="btn btn-{{ chordsList.isActive(null, null) ? '' : 'outline-' }}secondary btn-sm"
+          (click)="toggle(null, null)">All</button>
+      </th>
+      <th *ngFor="let c of chordsList.chords">
+        <button type="button"
+          class="btn btn-{{ chordsList.isActive(null, c) ? '' : 'outline-' }}secondary btn-sm"
+          (click)="toggle(null, c)">{{ c }}</button>
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let k of notes">
-      <th><button type="button" class="btn btn-secondary">{{ k }}</button></th>
-      <td *ngFor="let c of chords">
-        <button type="button" class="btn btn-secondary">
-          <strong>{{ k }}</strong>{{ c }}
-        </button>
+    <tr *ngFor="let n of chordsList.notes">
+      <th>
+        <button type="button"
+          class="btn btn-{{ chordsList.isActive(n, null) ? '' : 'outline-' }}secondary btn-sm"
+          (click)="toggle(n, null)">{{ n }}</button>
+      </th>
+      <td *ngFor="let c of chordsList.chords">
+        <button type="button"
+          class="btn btn-{{ chordsList.isActive(n, c) ? '' : 'outline-' }}secondary btn-sm"
+          (click)="toggle(n, c)">
+          <strong>{{ n }}</strong>{{ c }}</button>
       </td>
     </tr>
   </tbody>
